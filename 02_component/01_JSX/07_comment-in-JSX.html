@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>07_comment-in-JSX</title>
+ <!-- 리액트 공식 사이트의 문서에 웹 사이트 React 추가하기 메뉴의 cdn을 복사해서 넣어준다. -->
+ <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+ <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+ <script src='https://unpkg.com/@babel/standalone/babel.min.js'></script>
+</head>
+<body>
+
+    <div id="root">
+
+    </div>
+    <script type="text/babel">
+
+        const element = (
+            <>
+                <h1>Comment in JSX</h1>
+                {/*JSX 내에서의 주석은 이렇게 작성합니다 */}
+                <h3
+                    id="text"   //시작 태그를 여러 줄로 작성한다면 여기에도 주석 작성 가능
+                    className="text"
+                >
+                JSX 내의 주석을 사용하는 방법
+                </h3>
+                </>
+        )
+        ReactDOM.createRoot(document.getElementById('root')).render(element);
+    </script>
+    
+</body>
+</html>
