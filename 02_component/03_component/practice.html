@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>05_practice</title>
+    <script crossorigin src='https://unpkg.com/react@18/umd/react.development.js'></script>
+    <script crossorigin src='https://unpkg.com/react-dom@18/umd/react-dom.development.js'></script>
+    <script src='https://unpkg.com/@babel/standalone/babel.min.js'></script>
+</head>
+<body>
+    
+    <div id="root"></div>
+
+    <script type="text/babel">
+
+        /* UserInfo에 user 객체를 props로 전달 
+        NameCard, AgeCard, PhoneCard, EmailCard에 각각의 값을 props로 전달
+        +) user 객체를 여러개 정의해서 여러 UserInfo를 출력
+        */
+
+        const user = {
+            name : '홍길동',
+            age : 20,
+            phone : '010-1234-5678',
+            email : 'hong123@gmail.com'
+        };
+
+        const user2 = {
+            name : '유관순',
+            age : 16,
+            phone : '010-9876-5432',
+            email : 'yoo123@gmail.com'
+        };
+
+        const user3 = {
+            name : '신사임당',
+            age : 30,
+            phone : '010-6666-7777',
+            email : 'shin123@gmail.com'
+        };
+
+        function NameCard({ name }) {
+
+            return <h1>{ name }</h1>;
+        }
+
+        function AgeCard({ age }) {
+
+            return <h2 style={ { color : 'orangered' } }>{ age }</h2>;
+        }
+
+        function PhoneCard({ phone }) {
+
+            return <h2 style={ { color : 'red' } }>{ phone }</h2>;
+        }
+
+        function EmailCard({ email }) {
+
+            return <h3 style={ { backgroundColor : 'yellow' } }>{ email }</h3>;
+        }
+
+        function UserInfo({ user }) {
+
+            console.log(user);
+
+            return (
+                <div style={ { width : 300, border : '1px solid black'} }>
+                    <NameCard name={ user.name }/>
+                    <AgeCard age={ user.age }/>
+                    <PhoneCard phone={ user.phone }/>
+                    <EmailCard email={ user.email }/>
+                </div>
+            );
+        }
+
+        ReactDOM.createRoot(document.getElementById('root')).render([
+            <UserInfo user={ user }/>,
+            <UserInfo user={ user2 }/>,
+            <UserInfo user={ user3 }/>
+        ]);
+    </script>
+</body>
+</html>
