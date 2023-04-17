@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>03_component-composition</title>
+    <script crossorigin src='https://unpkg.com/react@18/umd/react.development.js'></script>
+    <script crossorigin src='https://unpkg.com/react-dom@18/umd/react-dom.development.js'></script>
+    <script src='https://unpkg.com/@babel/standalone/babel.min.js'></script>
+</head>
+<body>
+    
+    <div id="root"></div>
+
+    <script type="text/babel">
+
+        /* userInfo에 user객체를 props로 전달
+        NameCard, AgeCard, PhoneCard, EmailCatrd에 각각의 값을 props로 전달
+        +) user 객체를 여러개 정의해서 여러 UserInfo를 출력 */
+
+        const user = {
+            name : '홍길동',
+            age : 20,
+            phone : '010-1234-5678',
+            email : 'hong123@gmail.com'
+        };
+
+        function NameCard() {
+
+            return <h1>{ user.name }</h1>;
+        }
+
+        function AgeCard() {
+
+            return <h2 style={ { color : 'orangered' } }>{ user.age }</h2>;
+        }
+
+        function PhoneCard() {
+
+            return <h2 style={ { color : 'red' } }>{ user.phone }</h2>;
+        }
+
+        function EmailCard() {
+
+            return <h3 style={ { backgroundColor : 'yellow' } }>{ user.email }</h3>;
+        }
+
+        function UserInfo() {
+
+            return (
+                <div style={ { width : 300, border : '1px solid black'} }>
+                    <NameCard/>
+                    <AgeCard/>
+                    <PhoneCard/>
+                    <EmailCard/>
+                </div>
+            );
+        }
+
+        ReactDOM.createRoot(document.getElementById('root')).render(<UserInfo/>);
+    </script>
+</body>
+</html>
