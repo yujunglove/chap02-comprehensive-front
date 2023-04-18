@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>04_function-component</title>
+    <script crossorigin src='https://unpkg.com/react@18/umd/react.development.js'></script>
+    <script crossorigin src='https://unpkg.com/react-dom@18/umd/react-dom.development.js'></script>
+    <script src='https://unpkg.com/@babel/standalone/babel.min.js'></script>
+    <script src="https://unpkg.com/prop-types@15.8.1/prop-types.js"></script>
+</head>
+
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        /* 03에서 만든 로그인 컴포넌트를 함수형 컴포넌트로 변경해 본다*/
+        
+       const { userState } = React;
+
+        function LoginComponent() {
+
+
+            //동작하면 2개의 값을 반환, 그리고 배열형태
+            const [username, setUsername ] =userState('');
+            const [password, setPassword ] =userState('');
+
+            //State의 값을 바꾸는 거
+            const onChangeUsername = e => setUserName(e.target.value);
+            const onChangePassword = e => setPassword(e.target.value);
+           
+            const onClickHandler = () => {
+                alert(`username : ${username}\npassword : ${password}`);
+                //전에 입력했던 값을 비우고 싶다.
+                setUsername('');
+                setPassword('');
+            }
+
+            return(
+                    <div>
+                        <h1>로그인</h1>
+                        <label>아이디 : </label>
+                        <input 
+                        type="text"
+                        name="username"
+                        placeholder="아이디를 입력하세요"
+                        value={ username }
+                        onChange={ onChangeUsername }
+                        />
+                        <br/>
+                        <label>비밀번호 : </label>
+                        <input 
+                        type="password"
+                        name="password"
+                        placeholder="비밀번호를 입력하세요"
+                        value={ password }
+                        onChange={ onChangePassword }
+                        />
+                        <br/>
+                        <button
+                            onClick={ onClickHandler }
+                        >로그인</button>
+                        </div>
+                );
+        }
+
+        
+        ReactDOM.createRoot(document.getElementById('root')).render(<LoginComponent />);
+    </script>
+</body>
+</html>
