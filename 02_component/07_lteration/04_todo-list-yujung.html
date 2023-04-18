@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>04_todo-list-yujung</title>
+    <style>
+      .completed {
+        text-decoration: line-through;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <script type="text/babel">
+      function TodoList() {
+        const [todos, setTodos] = React.useState([]);
+        const [newTodo, setNewTodo] = React.useState('');
+
+        function addTodo() {
+          if (newTodo.trim() !== '') {
+            setTodos([...todos, { text: newTodo.trim(), completed: false }]);
+            setNewTodo('');
+          }
+        }
+
+        function removeTodo(index) {
+          setTodos(todos.filter((_, i) => i !== index));
+        }
+
+        function toggleTodoCompleted(index) {
+          setTodos(todos.map((todo, i) => i === index ? { ...todo, completed: !todo.completed } : todo));
+        }
+
+        return (
+          <div>
+            <h1>Todo List</h1>
+            <ul>
+              {todos.map((todo, index) => (
+                <li key={index} className={todo.completed ? 'completed' : ''}>
+                  <input type="checkbox" checked={todo.completed} onChange={() => toggleTodoCompleted(index)} />
+                  {todo.text}
+                  <button onClick={() => removeTodo(index)}>X</button>
+                </li>
+              ))}
+            </ul>
+            <div>
+              <input type="text" value={newTodo} onChange={(e) => setNewTodo(e.target.value)} />
+              <button onClick={addTodo}>Add</button>
+            </div>
+          </div>
+        );
+      }
+
+      ReactDOM.render(
+        <TodoList />,
+        document.getElementById('root')
+      );
+    </script>
+  </body>
+</html>

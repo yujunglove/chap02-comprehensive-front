@@ -102,11 +102,20 @@
         function TodoItems({ todos, setTodos }) {
 
             const removeTodo = (id) => {
-                // 코드 작성
-            }
+             setTodos(todos.filter(todo => todo.id !== id));
+        }
 
-            const onChangeHandler = (e) => {
-                // 코드 작성
+        const onChangeHandler = (e, id) => {
+                // 코드 작성함~
+                const checked = e.target.checked;
+                const updatedTodos = todos.map(todo => {
+                    if(todo.id === id) {
+                        return { ...todo, isDone: checked };
+                    } else {
+                        return todo;
+                    }
+                });
+                setTodos(updatedTodos);
             }
             
             return (
@@ -117,8 +126,9 @@
                                 <p key={ todo.id }>
                                     <input 
                                         type="checkbox" 
-                                        id={ todo.id } 
-                                        onChange={ onChangeHandler }
+                                        id={ todo.id }
+                                        checked={ todo.isDone }
+                                        onChange={ (e) => onChangeHandler(e, todo.id) }
                                     />
                                     <label 
                                         htmlFor={ todo.id } 
@@ -143,13 +153,17 @@
             const [nextId, setNextId] = useState(2);
 
             const onChangeHandler = (e) => {
-                // 코드 작성
-            }
+             setInputText(e.target.value);
+                }
 
             const onClickHandler = () => {
-                // 코드 작성
+                //만약 투두가 ''null이 아니면 새롭게 클릭해서 업데이터
+            if (inputText.trim() !== '') {
+            setTodos([...todos, { id: nextId, description: inputText.trim(), isDone: false }]);
+            setNextId(nextId + 1);
+            setInputText('');
             }
-
+        };
             return (
                 <>
                     <h3>ToDo-List</h3>
