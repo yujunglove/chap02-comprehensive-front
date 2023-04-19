@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>채팅</title>
+    <style>
+      #chatlog {
+        height: 200px;
+        overflow-y: scroll;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="chatbox">
+      <div id="chatlog"></div>
+      <input type="text" id="userinput" />
+      <button type="button" onclick="sendMessage()">보내기</button>
+    </div>
+
+    <script src="https://cdn.socket.io/4.1.1/socket.io.min.js"></script>
+    <script>
+      const chatlog = document.getElementById("chatlog");
+      const userinput = document.getElementById("userinput");
+      const socket = io("http://localhost:3000"); // Socket.io 서버에 연결
+
+      // Socket.io 이벤트 핸들러 등록
+      socket.on("connect", () => {
+        console.log("Socket.io 연결 성공!");
+      });
+
+      socket.on("chat message", (message) => {
+        appendMessage("상대방", message);
+      });
+
+      function sendMessage() {
+        const message = userinput.value;
+
+        // 사용자가 입력한 메시지를 화면에 표시하고, Socket.io 서버로 메시지 전송
+        appendMessage("나", message);
+        socket.emit("chat message", message);
+
+        // 사용자 입력창을 초기화
+        userinput.value = "";
+      }
+
+      function appendMessage(sender, message) {
+        const messageElement = document.createElement("div");
+        messageElement.innerText = `${sender}: ${message}`;
+        chatlog.appendChild(messageElement);
+      }
+    </script>
+  </body>
+</html>

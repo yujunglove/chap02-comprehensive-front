@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>02_reducer-form-control</title>
+    <script crossorigin src='https://unpkg.com/react@18/umd/react.development.js'></script>
+    <script crossorigin src='https://unpkg.com/react-dom@18/umd/react-dom.development.js'></script>
+    <script src='https://unpkg.com/@babel/standalone/babel.min.js'></script>
+    <script src="https://unpkg.com/prop-types@15.8.1/prop-types.js"></script>
+</head>
+
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        /* 리듀서를 활용해  input 입력값 상태 관리.*/
+        const { userReducer } = React;
+
+        function reducer(state, action) {
+
+            return{
+                ...state,
+                [action.name] : action.value
+            };
+        }
+
+        function RegistForm() {}
+
+    function RegistForm() {
+
+        const [ state, dispatch ] = userReducer(reducer,{
+            name : '',
+            nickname : ''
+        });
+               
+        const [ name, nickname ] = state;
+
+        //change 이벤트가 발생하면 reducer로 이벤트 발생 객체를 전달한다.
+
+        const onChangeHandler = e => dispatch(e.target);
+
+        return(
+
+        <>
+            <label> 이름 : </label>
+            <input type="text" name="name" value={name} onChange={ onChangeHandler }/><br/>
+            <label> 닉네임 : </label>
+            <input type="text" name="nickname" value={nickname} onChange={ onChangeHandler }/><br/>
+            <h3>입력한 이름: {name}</h3>
+            <h3>입력한 닉네임: {nickname}</h3>
+        </>
+        );
+    }
+
+          /* */
+
+            /* */
+        ReactDOM.createRoot(document.getElementById('root')).render(<RegistForm/>);
+    </script>
+</body>
+</html>
