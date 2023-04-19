@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>01_useEffect</title>
+    <script crossorigin src='https://unpkg.com/react@18/umd/react.development.js'></script>
+    <script crossorigin src='https://unpkg.com/react-dom@18/umd/react-dom.development.js'></script>
+    <script src='https://unpkg.com/@babel/standalone/babel.min.js'></script>
+    <script src="https://unpkg.com/prop-types@15.8.1/prop-types.js"></script>
+</head>
+
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        /* Hooks는 리액트 16.8에서 새로 도입된 기능으로,
+        함수 컴포넌트에서 사용 불가능한 생명주기 메소드의 한계점으로 인행
+        상태 관리 및 렌더링 이후 시점 컨트롤 등 다양한 문제를 해결하기 위해 만든 함수 집합을 의미한다.
+        
+        그 중 useState는 가장 기본적인 hook이며, 함수 컴포넌트에서도 상태를 관리 할 수 있게 해준다.
+        이 부분음 이미 다루었으므로 생략한다.
+        
+        클래스형 컴포넌트에서는 컴포넌트 랜더링 후 특정 작업 수행 시 
+        componentDidMount 혹은 componentDidUpdate 메소드를 사용하면 된다.
+        함수형 컴포넌트에서는 생명주기 api 사용이 불가능하므로 제공되는 hook인
+        useEffect를 활용한다.*/
+
+        const { useEffect } = React;
+        
+        function MessagePrinter(props) {
+            console.log('렌더링...');
+
+            userEffect(() => {
+                console.log('렌더링 이후 동작...');
+            });
+
+            return(
+                <h1>{ console.log('렌더링 시 출력') } {props.message}</h1>
+            );
+
+
+            //이 위치에서 무언가 동작하게 하고 싶어도 작성할 수 없다.
+            //render 이후 실행하고 싶은 동작을 userEffect를 통해 처리할 수 있다.
+        }
+
+          /* */
+        const message = "안녕하세요";
+            /* */
+        ReactDOM.createRoot(document.getElementById('root')).render(<MessagePrinter message={ message }/>);
+    </script>
+</body>
+</html>

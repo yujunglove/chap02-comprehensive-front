@@ -94,8 +94,9 @@
 
             return (
                 <div className="header">
-                    <h1>오늘의 할일! { new Date().toLocaleDateString() }</h1>    
-                </div>
+                    <h1>오총사의 오늘의 할 일! { new Date().toLocaleDateString() }</h1>    
+                
+                    </div>
             );
         }
 
@@ -147,7 +148,7 @@
         function TodoList() {
 
             const [todos, setTodos] = useState([
-                {id: 1, description: '할일 목록을 추가할 것', isDone: false}
+                {id: 1, description: '유정, 리호, 수빈, 나경, 주선 갓생 살자!', isDone: false}
             ]); 
             const [inputText, setInputText] = useState('');
             const [nextId, setNextId] = useState(2);
@@ -175,11 +176,17 @@
                     </div>
                     <div className="append-list">
                         <input 
-                            type="text" 
-                            value={ inputText } 
-                            onChange={ onChangeHandler }
-                        />
-                        <button onClick={ onClickHandler }>추가하기</button>
+                                type="text" 
+                                value={ inputText } 
+                                onChange={ onChangeHandler }
+                                onKeyDown={ (e) => {
+                                    if (e.key === 'Enter') {
+                                        onClickHandler();
+                                    }
+                                }}
+                            />
+                            <button onClick={ onClickHandler }>추가하기</button>
+
                     </div>
                 </>
             );
