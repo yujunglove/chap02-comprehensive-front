@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>04_pokemon-example</title>
+    <script crossorigin src='https://unpkg.com/react@18/umd/react.development.js'></script>
+    <script crossorigin src='https://unpkg.com/react-dom@18/umd/react-dom.development.js'></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <style>
+        .card {
+            border: 1px solid black;
+            width: 300px;
+            margin: 10px;
+            padding: 20px;
+            display: inline-block;
+        }
+        .card>* {
+            display: inline-block;
+        }
+        .card>img {
+            width: 100px;
+            height: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+
+        const { useState, useEffect }  = React;
+
+        //poke라는 이름의 props를 받아서 화면에 포켓몬 정보를 렌더링
+        function Card({ poke }) {
+
+
+            //Hook은 상태(state)를 관리하기 위해 사용되며, const [imageUrl, setImageUrl] = useState(''); 
+            //구문은 imageUrl이라는 상태 변수와, 이 변수를 업데이트할 수 있는 setImageUrl 함수를 생성
+           
+            //Card 컴포넌트가 화면에 렌더링될 때마다 초기 값인 빈 문자열('')로 초기화
+            const [imageUrl, setImageUrl] = useState('');
+
+            //poke.url 값이 변경될 때마다 함수 내부의 fetch 함수가 호출됩니다. 
+            //그 결과로 Card 컴포넌트에서 보여지는 포켓몬 이미지 URL이 업데이트되고, 
+            //컴포넌트가 다시 렌더링되어 변경된 포켓몬 이미지가 화면에 출력
+            useEffect(
+                () => {
+                fetch(poke.url)
+                .then(response => response.json())
+                .then(data => setImageUrl(data.sprites.back_default));
+            }, [poke.url]);
+            //이 배열에서 6번째 인덱스에 해당하는 "1"이 포켓몬의 번호입니다. 
+            //따라서 [6]을 사용하여 번호가져오기 
+
+            //포켓몬 번호를 가져오기 위해서 API에서 제공하는 URL 형식에 맞춰야 한다.
+            return (
+                <div className="card">
+                    
+                    <img src={imageUrl} alt={poke.name} />
+                    <div className="info">
+                       
+                        <h2>No. {poke.url.split('/')[6]}</h2>
+                        <h3>name : {poke.name}</h3>
+                    </div>
+                </div>
+            );
+        }
+
+        //완성
+        function PokemonList() {
+
+            const [pokemon, setPokemon ] = useState();
+
+            useEffect(
+                () => {
+                    fetch('https://pokeapi.co/api/v2/pokemon')
+                    .then(response => response.json())
+                    .then(data => setPokemon(data.results))
+                    .then(responsePokemon => setPokemon(responsePokemon.results));
+                },
+                []
+            );
+                //하나하나의 포켓몬에 대해서 카드라고 하는 컴포넌트를 만들 건데 props로 처리한다.
+                //컴포넌트를 쪼개려고 이렇게 만듬
+            return (
+                <div>
+                    {pokemon && pokemon.map(poke => <Card poke={ poke } key={ poke.name }/>)}
+                </div>
+            );
+        }
+
+        //완성
+        function Title() {
+
+            return <h1>포켓몬 목록</h1>;
+        }
+        // 완성
+        function App() {
+
+            return (
+                <>
+                    <Title/>
+                    <PokemonList/>
+                </>
+            );
+        }
+
+        ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+    </script>
+</body>
+</html>
