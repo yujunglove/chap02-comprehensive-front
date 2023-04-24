@@ -1,0 +1,15 @@
+{
+	"folders": [
+		{
+			"name": "react-workspace",
+			"path": "../../../.."
+		},
+		{
+			"name": "04_async",
+			"path": "../../../../../../../Users/hi/Downloads/react-workspace-master (1)/react-workspace-master/04_async"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "react-workspace"
+	}
+}
