@@ -30,7 +30,7 @@ function PokemonDetail() {
       <img src={pokemon.imageUrl} alt={pokemon.name} />
       <p>Height: {pokemon.height}</p>
       <p>Weight: {pokemon.weight}</p>
-      {/* 다른 정보도 출력하려면 여기에 추가하면 됩니다. */}
+   
       <Link to="/pokemon">다시 포켓몬 목록으로</Link>
     </div>
   );
