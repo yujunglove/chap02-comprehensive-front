@@ -21,7 +21,7 @@ function PokemonDetail() {
   }, [id]);
 
   if (!pokemon) {
-    return <div>Loading...</div>;
+    return <div>귀여운 포켓몬을 가지러 가는 중...</div>;
   }
 
   return (
