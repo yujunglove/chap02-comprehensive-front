@@ -1,25 +1,20 @@
-import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { getPokemonList } from "../api/PokemonAPI";
+import PropTypes from "prop-types";
 
-function PokemonList() {
-  const [pokemonList, setPokemonList] = useState([]);
-
-  useEffect(() => {
-    getPokemonList().then(data => setPokemonList(data));
-  }, []);
-
+function PokemonItem({ name, imageUrl }) {
   return (
-    <div className="content-row">
-      {pokemonList.map(pokemon => (
-        <Link to={`/pokemon/${pokemon.name}`} key={pokemon.name}>
-          <div className="item">
-            <h3>{pokemon.name}</h3>
-          </div>
-        </Link>
-      ))}
+    <div className="pokemon-item">
+      <Link to={`/pokemon/${name}`}>
+        <img src={imageUrl} alt={name} />
+        <p>{name}</p>
+      </Link>
     </div>
   );
 }
 
-export default PokemonList;
+PokemonItem.propTypes = {
+  name: PropTypes.string.isRequired,
+  imageUrl: PropTypes.string.isRequired
+};
+
+export default PokemonItem;

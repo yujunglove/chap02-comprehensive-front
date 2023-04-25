@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>01_middleware</title>
+    <script crossorigin src='https://unpkg.com/react@18/umd/react.development.js'></script>
+    <script crossorigin src='https://unpkg.com/react-dom@18/umd/react-dom.development.js'></script>
+    <script src='https://unpkg.com/@babel/standalone/babel.min.js'></script>
+    <script src="https://unpkg.com/prop-types@15.8.1/prop-types.js"></script>
+    <script src="https://www.unpkg.com/redux@4.2.1/dist/redux.js"></script>
+    <script src="https://www.unpkg.com/react-redux@8.0.5/dist/react-redux.js"></script>
+</head>
+
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        /* 리덕스 미들웨어 
+        
+        dispatch(ation) 객체를 보내게 되면 결국은 그게 reducer 함수를 호출을 하게 된다. reducer(state,action)
+        -> 호출이 되고 나면 반환 된 값이 -> store에 저장이 된다.
+        액션이 디스패치 된 다음 리듀서에서 액션을 받아 업데이트 하기 전에 추가적인 작업을 미들웨어를 통해 수행할 수 있다. 
+        
+        특정 조건에 따라 액션 무시 및 추가 작업, 수정, 로깅, 트리거 액션, 함수 호출 등을 수행하도록 할 수 있다.
+        주로 사용하는 용도는 비동기 작업을 처리할 때이다. (redux-thunk, redux-saga 등이 비동기 관련 미들웨어 라이브러리)
+        
+        실제로 미들 웨어를 직접 만들어서 쓸 일은 거의 없지만, 간단한 미들웨어를 만들어 동작하는 순서를 확인해 본다.
+        
+        액션을 출력하는 로그 기능을 가지는 간단한 미들웨어
+        */
+       const consoleLogginMiddleware = store =>next => action => {
+
+        console.log(action); //액션 객체를 출력하는 콘솔 로그 기능
+        const result = next(action); //다음 미들웨어 또는 리듀서에게 액션을 전달
+
+         return result; //반환하는ㄴ result는 dispatch(action)의 결과물
+       }
+          /* */
+
+            /* */
+        ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+    </script>
+</body>
+</html>
