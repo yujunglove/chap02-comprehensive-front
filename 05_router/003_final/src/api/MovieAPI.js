@@ -1,4 +1,6 @@
-const API_KEY = '1da2a56adea147bfe6de4427f0bac836';
+
+
+const API_KEY = '7975c2013c8f4ad15b877cfcd2df8320';
 
 /* 어제 날짜를 포맷에 맞춰서 반환하는 함수 */
 const getDateFormat = () => {
