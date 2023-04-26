@@ -13,7 +13,7 @@ function MovieDetail() {
             getMovieDetail(movieCd)
             .then(data => setMovie(data));
         },
-        [movieCd]
+        []
     );
 
     console.log(movie);
