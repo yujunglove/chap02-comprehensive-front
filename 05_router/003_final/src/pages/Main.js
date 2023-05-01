@@ -52,11 +52,9 @@ function Main() {
 
     <div className="menu2">
     <div class="line"></div>
-      
   <img className="circle4" src="image/circle.png"></img>
     </div>
-{/*     
-    <div class="container">
+    
       <div class="title1">
       <div class="title2">
           <b>마이페이지</b>
@@ -88,7 +86,7 @@ function Main() {
           <div class="navbar2"></div>
           <hr></hr>
     </div>
-    </div> */}
+
     </body>
   );
 }
