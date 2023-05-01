@@ -1,3 +1,9 @@
+@media (max-width: 768px) {
+  .menu {
+    width: 100%;
+  }
+}
+
 
 body {
   background-color: #F0F0F0;
@@ -6,12 +12,13 @@ body {
 .mainProfil {
   flex-direction: column;
   width: 205px;
-  height: 40vh;
+  height: 280px;
   align-items: center;
   padding: 20px;
   background: linear-gradient(177.01deg, rgba(251, 246, 246, 0.5) -0.54%, rgba(0, 0, 0, 0) 97.52%), #4D70ED;
   border-radius: 10px 10px 0px 0px;
 }
+
 
 .circle1{
 
@@ -45,17 +52,17 @@ border-radius: 100%;
     border-radius: 100%;
     
     }
-
-.nemo {
-  position: absolute;
-  padding: 50px 50px 10px 10px;
-  margin-top: 20px;
-  margin-left: 25px;
-  width: 100px;
-  height: 100px;
-  background: #FFFFFF;
-  border-radius: 30px;
-}
+    .nemo {
+      position: absolute;
+      padding: 50px 50px 10px 10px;
+      margin-top: 20px;
+      margin-left: 25px;
+      width: 100px; /* 수정 */
+      height: 100px; /* 수정 */
+      background: #FFFFFF;
+      border-radius: 30px;
+    }
+    
 
 .memberName1 {
   margin-top: 200px;
@@ -87,7 +94,6 @@ border-radius: 100%;
   padding: 3px;
   padding-top: 15px;
   border-radius: 20px 20px 0px 0px;
-  
 }
 
 .menu > *:not(.home) {
@@ -117,7 +123,7 @@ border-radius: 100%;
   height: 10vh;
   padding: 3px;
   background-color: #ffff;
-  text-align: left; /* 왼쪽 정렬 추가 */
+  text-align: left;
 }
 
 .line {
@@ -155,14 +161,13 @@ border-radius: 100%;
 }
 
 .container{
-  margin-top: -755px;
+  margin-top: 0%;
   margin-left: 250px;
   position: absolute;
-  width: 82%;
-  height: 105%;
+  width: 80%;
+  height: 80%;
   border-radius: 2%;
 }
-
 .no-style {
   /* 스타일이 적용되지 않도록 지정 */
   color: inherit;
@@ -171,36 +176,33 @@ border-radius: 100%;
 }
 
 .title2 {
-  font-size: 1.5rem;
+  font-size: 1.5vw;
   text-align: center;
-  margin-top: -30px;
-  padding-bottom: 20px;
+  margin-top: -3%;
+  padding-bottom: 2%;
   /* 기타 스타일 */
 }
 
 .navbar2 {
-  margin-left: 30px;
+  margin-left: 3%;
   display: inline-block;
-  padding: 10px 20px;
-  padding-top: 10px;
-  font-size: 1.2rem;
+  padding: 1.5% 3%;
+  font-size: 1.2vw;
   /* 기타 스타일 */
 }
 
 .navbar2.active::after {
   content: "";
   display: block;
-  height: 3px;
+  height: 0.3vw;
   background-color: #3552BB;
-  margin-top: 9px;
+  margin-top: 1.2%;
 }
 
-
 hr {
-
   width: 80%;
   border: none;
-  height: 2px;
+  height: 0.2vw;
   background-color: #7B7A7A;
-  margin: 5px; /* 기본적인 마진값 제거 */
+  margin: 1%; /* 기본적인 마진값 제거 */
 }

@@ -55,6 +55,7 @@ function Main() {
       
   <img className="circle4" src="image/circle.png"></img>
     </div>
+{/*     
     <div class="container">
       <div class="title1">
       <div class="title2">
@@ -87,7 +88,7 @@ function Main() {
           <div class="navbar2"></div>
           <hr></hr>
     </div>
-    </div>
+    </div> */}
     </body>
   );
 }
