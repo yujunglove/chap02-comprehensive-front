@@ -6,7 +6,7 @@ body {
 .mainProfil {
   flex-direction: column;
   width: 205px;
-  height: 30vh;
+  height: 40vh;
   align-items: center;
   padding: 20px;
   background: linear-gradient(177.01deg, rgba(251, 246, 246, 0.5) -0.54%, rgba(0, 0, 0, 0) 97.52%), #4D70ED;
@@ -87,14 +87,15 @@ border-radius: 100%;
   padding: 3px;
   padding-top: 15px;
   border-radius: 20px 20px 0px 0px;
+  
 }
 
 .menu > *:not(.home) {
   /* .home 클래스를 제외한 모든 하위 요소에 스타일을 적용 */
   flex-grow: 1;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: left;
+  align-items: left;
   font-size: 1.2rem;
   text-decoration: none;
   color: #696868;
@@ -102,6 +103,11 @@ border-radius: 100%;
   border: 1.5px solid #ccc;
   border-radius: 7px;
   background-color: #fff;
+}
+
+.menuIcon {
+  width: 30px; /* 이미지의 가로 크기 */
+  height: 30px; /* 이미지의 세로 크기 */
 }
 
 .menu2 {
@@ -121,9 +127,9 @@ border-radius: 100%;
 }
 
 .circle4{
-  padding: 10px 80px;
-  width: 80px; /* 이미지의 가로 크기 */
-  height: 70px; /* 이미지의 세로 크기 */
+  padding: 5px 80px;
+  width: 70px; /* 이미지의 가로 크기 */
+  height: 60px; /* 이미지의 세로 크기 */
 }
 
 
@@ -149,7 +155,7 @@ border-radius: 100%;
 }
 
 .container{
-  margin-top: -895px;
+  margin-top: -755px;
   margin-left: 250px;
   position: absolute;
   width: 82%;

@@ -22,22 +22,12 @@ function Main() {
         <div className="memberName1">어트랙션-A 석이현</div>
         <div className="memberName2">000-0000-0000</div>
       </div>
-      <div className="menu" style={{ marginTop: "-30px"}}>
+      <div className="menu" style={{ marginTop: "-20px"}}>
       <Link to="/movie">
-      <div
-  className="myPage"
-  style={{
-    backgroundColor: selectedMenu === 'myPage' ? '#4D70ED' : 'transparent',
-    color: selectedMenu === 'myPage' ? '#FFFFFF' : 'initial',
-  }}
-  onClick={() => setSelectedMenu('myPage')}
->
-  마이페이지
-</div>
-
+      <div className="myPage">마이페이지</div>
         </Link>
         <Link to="/mail">
-          <div className="mail">급여 내역</div>
+          <div className="mail"><img className="menuIcon" src="image/MyPage.png"></img>급여 내역</div>
         </Link>
         <Link to="/">
           <div className="home">일정</div>
