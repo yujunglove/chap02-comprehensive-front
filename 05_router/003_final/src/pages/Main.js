@@ -15,6 +15,7 @@ function Main() {
     <body>
     <div>
       <div className="mainProfil">
+        <img className="logo1" src="image/profileLogo.png"/>
         <div className="circle1"></div>
         <div className="circle2"></div>
         <div className="circle3"></div>
@@ -23,36 +24,38 @@ function Main() {
         <div className="memberName2">000-0000-0000</div>
       </div>
       <div className="menu" style={{ marginTop: "-20px"}}>
-      <Link to="/movie">
-      <div className="myPage">마이페이지</div>
+      <Link to="/myPage">
+      <div className="myPage nav"><img className="menuIcon navImg" src="image/MyPage.png"></img>마이페이지</div>
         </Link>
-        <Link to="/mail">
-          <div className="mail"><img className="menuIcon" src="image/MyPage.png"></img>급여 내역</div>
-        </Link>
-        <Link to="/">
-          <div className="home">일정</div>
+        <Link to="/salary">
+          <div className="salary nav"><img className="menuIcon navImg" src="image/salary.png"></img>급여 내역</div>
         </Link>
         <Link to="/">
-          <div className="home"> <img src=""/>게시판</div>
+          <div className="home nav"><img className="menuIcon navImg" src="image/Cal.png"></img>일정</div>
         </Link>
         <Link to="/">
-          <div className="home">직원</div>
+          <div className="home nav"><img className="menuIcon navImg" src="image/Board.png"></img>게시판</div>
         </Link>
         <Link to="/">
-          <div className="home">장비 & 리프트 관리</div>
+          <div className="home nav"><img className="menuIcon navImg" src="image/Member.png"></img>직원</div>
         </Link>
         <Link to="/">
-          <div className="home" >전자 결재</div>
+          <div className="manager nav"><img className="menuIcon navImg" src="image/Management.png"></img>장비 & 리프트 관리</div>
         </Link>
         <Link to="/">
-          <div className="home">직원 교육</div>
+          <div className="home nav" ><img className="menuIcon navImg" src="image/Auto.png"></img>전자 결재</div>
+        </Link>
+        <Link to="/">
+          <div className="home nav"><img className="menuIcon navImg" src="image/Edu.png"></img>직원 교육</div>
         </Link>
       </div>
     </div>
 
     <div className="menu2">
     <div class="line"></div>
+    <Link to="/home">
   <img className="circle4" src="image/circle.png"></img>
+  </Link>
     </div>
     
       <div class="title1">
