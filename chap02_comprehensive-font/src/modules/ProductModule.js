@@ -5,15 +5,18 @@ const initialState = [];
 
 /* 액션 */
 const GET_PRODUCTS = 'product/GET_PRODUCTS';
+const GET_PRODUCT = 'product/GET_PRODUCT'
 
-export const { product : { getProducts } } = createActions({
-    [GET_PRODUCTS] : (res) => res.data
+export const { product : { getProducts, getProduct } } = createActions({
+    [GET_PRODUCTS] : (res) => res.data,
+    [GET_PRODUCT] : (res) => res.data  
 }); 
 
-/* 리듀서 저장되게 되는거 */
+/* 리듀서 */
 const productReducer = handleActions(
     {
-        [GET_PRODUCTS] : (state, {payload}) => payload
+        [GET_PRODUCTS] : (state, { payload }) => payload,
+        [GET_PRODUCT] : (state, { payload }) => payload
     }
 , initialState);
 

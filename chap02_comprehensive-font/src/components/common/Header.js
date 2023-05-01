@@ -9,6 +9,7 @@ function Header() {
     const navigate = useNavigate();
     const [search, setSearch] = useState('');
 
+
     /* 로고 클릭 시 메인 페이지로 이동  */
     const onClickLogoHandler = () => {
         navigate("/");
@@ -19,8 +20,13 @@ function Header() {
         setSearch(e.target.value);
     }
 
-
-
+    /* Enter키 입력 시 검색 화면으로 넘어가는 이벤트 */
+    const onEnterKeyHandler = (e) => {
+        if(e.key === 'Enter') {
+            console.log('Enter key : ', search);
+            navigate(`/search?value=${search}`);
+        }
+    }
 
     function BeforeLogin() {
         return (
@@ -52,6 +58,7 @@ function Header() {
                     type="text" 
                     placeholder="검색"
                     onChange={onSearchChangeHandler}
+                    onKeyUp={ onEnterKeyHandler }
                 />
                 { !isLogin ? <BeforeLogin/> : <AfterLogin/> }
             </div>
