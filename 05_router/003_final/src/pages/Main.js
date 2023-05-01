@@ -16,6 +16,7 @@ function Main() {
     <div>
       <div className="mainProfil">
         <img className="logo1" src="image/profileLogo.png"/>
+        <div className="loginLogo">로그인</div>
         <div className="circle1"></div>
         <div className="circle2"></div>
         <div className="circle3"></div>
