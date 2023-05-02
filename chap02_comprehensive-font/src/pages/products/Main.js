@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { callProductCategoriesListAPI, callProductListAPI, callProductSearchListAPI } from "../../apis/ProductAPICalls";
-import ProductList from "../../lists/ProductList";
+import ProductList from "../../components/lists/ProductList";
 import PagingBar from "../../components/common/PagingBar";
 import { useParams, useSearchParams } from "react-router-dom";
 
