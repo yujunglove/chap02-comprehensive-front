@@ -1,14 +1,12 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import HeaderCSS from './Header.module.css';
 import { useState } from "react";
+import { isLogin } from "../../utils/TokenUtils";
 
 function Header() {
 
-    /* 로그인 로직 작성 후 변경할 예정 */
-    const isLogin = false;
     const navigate = useNavigate();
     const [search, setSearch] = useState('');
-
 
     /* 로고 클릭 시 메인 페이지로 이동  */
     const onClickLogoHandler = () => {
@@ -37,9 +35,31 @@ function Header() {
     }
 
     function AfterLogin() {
+
+        const onClickLogoutHandler = () => {
+            window.localStorage.removeItem('accessToken');
+            alert('로그아웃 후 메인으로 이동합니다.');
+            navigate('/', { replace : true });
+        }
+
+        const onClickMyPageHandler = () => {
+            navigate("/mypage");
+        }
+
         return (
             <div>
-                <button>마이페이지</button> | <button>로그아웃</button>
+                <button
+                    className={ HeaderCSS.HeaderBtn }
+                    onClick={ onClickMyPageHandler }
+                >
+                    마이페이지
+                </button> | 
+                <button
+                    className={ HeaderCSS.HeaderBtn }
+                    onClick={ onClickLogoutHandler }
+                >
+                    로그아웃
+                </button>
             </div>
         );
     }
@@ -60,7 +80,7 @@ function Header() {
                     onChange={onSearchChangeHandler}
                     onKeyUp={ onEnterKeyHandler }
                 />
-                { !isLogin ? <BeforeLogin/> : <AfterLogin/> }
+                { isLogin() ? <AfterLogin/> : <BeforeLogin/> }
             </div>
         </>
     );
