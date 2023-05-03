@@ -1,36 +1,49 @@
-import RegisterCSS from "./Register.module.css";
+import { useDispatch, useSelector } from 'react-redux';
+import RegisterCSS from './Register.module.css';
+import { useEffect } from 'react';
+import { callGetMemberAPI } from '../../apis/MemberAPICalls';
 
 function Profile() {
 
-    return(
-        <>
-            <div className={ RegisterCSS.backgroundDiv }
-            style={ {backgroundColor : 'white '}}
-            >
-                <div className={RegisterCSS.registerDiv}>
-                    <h1>내 정보</h1>
-                    <input 
-                        type="text"
-                        readOnly={true}
-                        />
-                       
-                    <input 
-                        type="text"
-                        readOnly={true}
-                        />
+    const dispatch = useDispatch();
+    const { member } = useSelector(state => state.memberReducer);
 
-                    <input 
-                        type="text"
-                        readOnly={true}
-                        />
-
-                </div>
-
-            </div>
-        </>
+    useEffect(
+        () => {
+            dispatch(callGetMemberAPI());
+        },
+        []
     )
 
-    
+    return (
+        <>
+            <div 
+                className={ RegisterCSS.backgroundDiv }
+                style={ { backgroundColor : 'white'} }
+            >
+                { member && 
+                    <div className={ RegisterCSS.registerDiv }>
+                        <h1>내 정보</h1>
+                        <input
+                            type="text"
+                            readOnly={true}
+                            value={ member.data.memberId }
+                        />
+                        <input
+                            type="text"
+                            readOnly={true}
+                            value={ member.data.memberName }
+                        />
+                        <input
+                            type="text"
+                            readOnly={true}
+                            value={ member.data.memberEmail }
+                        />
+                    </div>
+                }
+            </div>
+        </>
+    );
 }
 
 export default Profile;

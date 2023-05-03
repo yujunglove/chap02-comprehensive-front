@@ -8,6 +8,8 @@ import ProtectedRoute from "./components/router/ProtectedRoute";
 import Error from "./pages/error/Error";
 import MyPageLayout from "./layouts/MyPageLayout";
 import Profile from "./pages/member/Profile";
+import ProductManagement from "./pages/admin/ProductManagement";
+import ProductRegistration from "./pages/admin/ProductRegistration";
 
 function App() {
   return (
@@ -21,8 +23,11 @@ function App() {
 
           <Route path="mypage" element={ <MyPageLayout/> }>
             <Route index element={ <Navigate to="/mypage/profile" replace/> }/>
-            <Route path="profile" element={ <ProtectedRoute loginCheck={true}><Profile/> </ProtectedRoute>}/>
+            <Route path="profile" element={ <ProtectedRoute loginCheck={true}><Profile/></ProtectedRoute> }/>
           </Route>
+
+          <Route path="product-management" element={<ProtectedRoute authCheck={true}><ProductManagement/></ProtectedRoute>}/>
+          <Route path="product-registration" element={<ProtectedRoute authCheck={true}><ProductRegistration/></ProtectedRoute>}/>
 
         </Route>
 

@@ -1,33 +1,41 @@
 import PagingBarCSS from './PagingBar.module.css';
 
-function PagingBar({ pageInfo, setCurrentPage}) {
+function PagingBar({ pageInfo, setCurrentPage }) {
 
     const pageNumber = [];
-    if (pageInfo) {
+    if(pageInfo) {
         for(let i = pageInfo.startPage; i <= pageInfo.endPage; i++) {
             pageNumber.push(i);
         }
     }
+
     return (
-        <div style= { { listStyleType : 'none', display : 'flex'} }>
-            <button className={ PagingBarCSS.pagingBtn }
-                onClick={ () => setCurrentPage(pageInfo.currentPage -1 ) }
+        <div style={ {listStyleType : 'none', display : 'flex', justifyContent: 'center'} }>
+            <button 
+                className={ PagingBarCSS.pagingBtn }
+                onClick={ () => setCurrentPage(pageInfo.currentPage - 1) }
                 disabled={ pageInfo.currentPage <= 1 }
-            >옆</button>
+            >
+                &lt;
+            </button>
             { pageNumber.map(num => (
-                <li key={num} onClick={ () => setCurrentPage(num )}>
-                    <button className={ PagingBarCSS.pagingBtn } 
-                    style={ pageInfo.currentPage === num ? { backgroundColor : 'orange'} : null }
+                <li key={num} onClick={ () => setCurrentPage(num) }>
+                    <button 
+                        className={ PagingBarCSS.pagingBtn }
+                        style={ pageInfo.currentPage === num ? { backgroundColor : 'orange' } : null }
                     >
                         {num}
-                        </button>
+                    </button>
                 </li>
-            ))}
-        
-        <button className={ PagingBarCSS.pagingBtn }
-                onClick={ () => setCurrentPage(pageInfo.currentPage +1 ) }
+            ))
+            }
+            <button 
+                className={ PagingBarCSS.pagingBtn }
+                onClick={ () => setCurrentPage(pageInfo.currentPage + 1) }
                 disabled={ pageInfo.currentPage >= pageInfo.maxPage }
-            >옆</button>
+            >
+                &gt;
+            </button>
         </div>
     );
 }
