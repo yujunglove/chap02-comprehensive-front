@@ -1,4 +1,4 @@
-import { getProduct, getProducts } from "../modules/ProductModule";
+import { getProduct, getProducts, postProduct, putProduct } from "../modules/ProductModule";
 
 /* React App에서 .env를 사용할 때는 REACT_APP 접두어가 필요^^;; */
 const SERVER_IP = `${process.env.REACT_APP_RESTAPI_SERVER_IP}`;
@@ -89,24 +89,83 @@ export const callProductListForAdminAPI = ({ currentPage = 1 }) => {
 export const callProductRegistAPI = (formData) => {
 
     const requestURL = `${PRE_URL}/products`;
+  
+    return async (dispatch, getState) => {
 
+        const result = await fetch(requestURL, {
+            method : 'POST',
+            headers : {
+                "Authorization" : "Bearer " + window.localStorage.getItem('accessToken')
+            },
+            body : formData
+        }).then(response => response.json());
 
+        if(result.status === 200) {
+            console.log('[ProductAPICalls] : callProductRegistAPI result : ', result);
+            dispatch(postProduct(result));
+        }
+    }
+}
 
+export const callProductDetailForAdminAPI = ({ productCode }) => {
 
-    
+    const requestURL = `${PRE_URL}/products-management/${productCode}`;
+
     return async (dispatch, getState) => {
 
         const result = await fetch(requestURL, {
             method : 'GET',
             headers : {
-                "Content-Type" : "application/json",
                 "Authorization" : "Bearer " + window.localStorage.getItem('accessToken')
             }
         }).then(response => response.json());
 
         if(result.status === 200) {
-            console.log('[ProductAPICalls] : callProductListForAdminAPI result : ', result);
-            dispatch(getProducts(result));
+            console.log("[ProductAPICalls] callProductDetailForAdminAPI result : ", result);
+            dispatch(getProduct(result));
         }
     }
 }
+
+export const callProductUpdateAPI = (formData) => {
+    
+    const requestURL = `${PRE_URL}/products`;
+
+    return async (dispatch, getState) => {
+
+        const result = await fetch(requestURL, {
+            method : 'PUT',
+            headers : {
+                "Authorization" : "Bearer " + window.localStorage.getItem('accessToken')
+            },
+            body : formData
+        }).then(response => response.json());
+
+        if(result.status === 200) {
+            console.log('[ProductAPICalls] callProductUpdateAPI result :', result);
+            dispatch(putProduct(result));
+        }
+    }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -12,14 +12,14 @@ function LoginForm() {
         memberPassword: ''
     });
 
-    //값이 변화하게 되면 setForm 한다.
     const onChangeHandler = (e) => {
         setForm({
             ...form,
             [e.target.name]: e.target.value
         });
     }
-
+    
+    // 로그인 버튼 클릭 이벤트
     const onClickHandler = () => {
         dispatch(callLoginAPI(form));
     }

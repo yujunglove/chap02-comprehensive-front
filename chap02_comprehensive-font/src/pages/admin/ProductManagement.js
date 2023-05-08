@@ -20,7 +20,9 @@ function ProductManagement() {
     );
 
     // 테이블의 상품 행을 클릭 시 상품 상세 및 수정 페이지로 라우팅
-    const onClickTableTr = (productCode) => {}
+    const onClickTableTr = (productCode) => {
+        navigate(`/product-update/${productCode}`);
+    }
 
     const onClickProductInsert = () => {
         navigate("/product-registration");

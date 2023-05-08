@@ -9,17 +9,14 @@ function Register () {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const { regist } = useSelector(state => state.memberReducer);
-
-    console.log('regist : ', regist );
-
     const [form, setForm] = useState({});
 
-    useEffect (
+    useEffect(
         () => {
             if(regist?.status === 200) {
-                alert('회운 가입이 완료 되었습니다. 로그인 페이지로 이동합니다. ');
+                alert('회원 가입이 완료 되었습니다. 로그인 페이지로 이동합니다.');
                 navigate("/login", { replace : true });
-            }else if (regist?.state ===400) {
+            } else if (regist?.state === 400) {
                 alert(regist.message);
             }
         },

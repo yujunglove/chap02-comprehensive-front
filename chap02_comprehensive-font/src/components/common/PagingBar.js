@@ -1,4 +1,4 @@
-import PagingBarCSS from './PagingBar.module.css';
+import PagingBarCSS from './Pagingbar.module.css';
 
 function PagingBar({ pageInfo, setCurrentPage }) {
 
