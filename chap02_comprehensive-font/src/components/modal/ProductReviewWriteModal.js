@@ -1,8 +1,19 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ProductReviewModalCSS from "./ProductReviewModal.module.css";
+import { useDispatch, useSelector } from "react-redux";
+import { callReviewWriteAPI } from "../../apis/ReviewAPICalls";
 
 function ProductReviewWriteModal({ productCode, setProductReviewWriteModal }) {
   const [form, setForm] = useState({ product: { productCode } });
+  const dispatch = useDispatch();
+  const { regist } = useSelector((state) => state.reviewReducer);
+
+  useEffect(() => {
+    if (regist?.status === 200) {
+      setProductReviewWriteModal(false);
+      alert("리뷰 등록이 완료 되었습니다.");
+    }
+  }, [regist]);
 
   const onChangeHandler = (e) => {
     setForm({
@@ -11,9 +22,9 @@ function ProductReviewWriteModal({ productCode, setProductReviewWriteModal }) {
     });
   };
 
-  console.log("form : ", form);
-
-  const onClickProductReviewHandler = () => {};
+  const onClickProductReviewHandler = () => {
+    dispatch(callReviewWriteAPI(form));
+  };
 
   return (
     <div className={ProductReviewModalCSS.modal}>
